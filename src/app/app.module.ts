@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuComponent } from './components/menu/menu.component';
 import { environment } from 'src/environments/environment'; // Importa environment, no environment.prod
+a
 
 @NgModule({
   declarations: [AppComponent, MenuComponent],
