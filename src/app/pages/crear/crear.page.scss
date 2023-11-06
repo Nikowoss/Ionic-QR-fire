@@ -1,0 +1,48 @@
+ion-content.fondo {
+    --background: url(../../../assets/icon/fondo.jpg);
+  }
+  
+  .header {
+    margin-top: 50px;
+    margin-bottom: 40px;
+    text-align: center;
+    color: #00776E;
+    font-weight: bolder;
+  
+    .title {
+      font-size: 2rem;
+    }
+  }
+  
+  ion-item {
+    --background: #00776E;
+    --color: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 16px;
+  }
+  
+  .errorInput {
+    color: red;
+    font-weight: bold;
+    font-size: small;
+    display: flex;
+  }
+  
+  .loginLink {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 80%;
+    top: 20;
+    a {
+      text-decoration: none;
+    }
+  }
+  
+  ion-button[color="tertiary"] {
+    --ion-color-tertiary: #39c5bb;
+  }
+  

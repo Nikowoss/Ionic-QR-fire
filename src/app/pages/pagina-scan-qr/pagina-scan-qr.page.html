@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color: #AAE7E3; text-align: center; justify-content: center; margin-right: 40px;">Escaneo QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" style="--background: #00776E; background-color: #00776E;">
+  <div style="text-align: center;">
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col sizeXl="3" sizeSm="3"></ion-col>
+        <ion-col sizeXl="6" sizeSm="6" style="margin-top: 20px;" >
+          
+          <img class="qr-animation" src="../../../assets/icon/scan.png" alt="">
+          <ion-button (click)="onClick('scancorrecto')" style="margin-top: 20px;" expand="full" fill="solid" shape="round" color="tertiary" type="submit">
+            Escanear QR
+          </ion-button>
+        </ion-col>
+        <ion-col sizeXl="3" sizeSm="3"></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

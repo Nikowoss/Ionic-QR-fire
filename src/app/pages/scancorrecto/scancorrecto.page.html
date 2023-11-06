@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menues" class="custom-menu-button"></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="text-align: center; color: #AAE7E3;">Escaneo Correcto</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding" style="--background: #00776E; background-color: #00776E;">
+  <div style="text-align: center;">
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col sizeXl="3" sizeSm="3"></ion-col>
+          <ion-text color="primary">
+            
+              <h1 style="text-align: center; color: #AAE7E3;">Has quedado presente en la clase inglés intermedio</h1>
+
+            <ion-button (click)="onClick('pagina-scan-qr')" style="margin-top: 20px;" expand="full" fill="solid" shape="round" color="tertiary" type="submit">
+              Atrás
+            </ion-button>
+          </ion-text>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

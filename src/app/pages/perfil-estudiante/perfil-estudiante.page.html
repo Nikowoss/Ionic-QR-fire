@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color: #AAE7E3; text-align: center; justify-content: center; margin-right: 40px;">Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content style="--background: #00776E; background-color: #00776E;" class="custom-content">
+  <ion-grid [fixed]="true" class="ion-text-center">
+    <ion-row>
+      <ion-col size="12" size-md="8" offset-md="2" style="background-color: #AAE7E3; margin-top: 80px; border-radius: 15px;" class="ion-padding borde">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <img src="../../../assets/icon/iconoestudiante.png" alt="" height="100px">
+          <form #miFormulario="ngForm" (ngSubmit)="onSubmit()" style="width: 100%; max-width: 400px; color: #003834; font-weight: 700;">
+            <ion-input style="text-align: start; margin-top: 30px;" placeholder="gaby@gmail.com" label="E-mail" type="email"
+              aria-label="Email" name="email" disabled="true" [(ngModel)]="usuario.username"></ion-input>
+
+            <ion-input style="text-align: start;" placeholder="********" label="Contraseña" type="password"
+              aria-label="Contraseña" name="Contraseña" disabled="true" [(ngModel)]="usuario.password"></ion-input>
+
+            <ion-input style="text-align: start; font-size: 15px;color: #003834;" labelPlacement="floating" helperText="Formato: 8 Caracteres" label="Nueva Contraseña"
+              type="password" aria-label="Contraseña" name="Nueva Contraseña" [(ngModel)]="valid_pass.pass1"></ion-input>
+
+            <ion-input style="text-align: start; font-size: 15px;color: #003834;" labelPlacement="floating" helperText="Debe ser igual a la de arriba" label="Repita Contraseña"
+              type="password" aria-label="Contraseña" name="Repita Contraseña" [(ngModel)]="valid_pass.pass2"></ion-input>
+
+            <ion-button color="primary" type="submit" class="ion-padding" [disabled]="miFormulario.invalid">
+              Cambiar contraseña
+            </ion-button>
+          </form>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

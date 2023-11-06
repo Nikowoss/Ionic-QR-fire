@@ -1,0 +1,27 @@
+<ion-content class="ion-padding fondo">
+  <div class="ion-padding" style="text-align: center;">
+    <ion-grid [fixed]="true">
+      <ion-row>
+        <ion-col size="3"></ion-col>
+        <ion-col style="background-color:#00776E;margin-top: 20px; border-radius: 15px;" class="ion-padding borde">
+          <div class="ion-text-start" style="margin-top: 10px;">
+            <a style="color: #39C5BB;" fill="outline" routerLink="/estudiante"><ion-icon name="arrow-back"></ion-icon>
+              Volver
+            </a>
+          </div>
+          <h4 style="color: #AAE7E3">Recuperar Contraseña</h4>
+
+            <ion-input style="color: #AAE7E3" [(ngModel)]="email" placeholder="Enter your email" class="input" />
+
+            <div>
+              <ion-button style="width: 200px; margin-top: 50px;" color="tertiary" type="submit" class="ion-padding; sendBtn"
+              (click)="reset()">
+                Ingresar
+              </ion-button>
+            </div>
+        </ion-col>
+        <ion-col size="3"></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

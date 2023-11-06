@@ -1,0 +1,53 @@
+<ion-content class="ion-padding fondo">
+  <div class="ion-padding" style="text-align: center;">
+    <ion-grid [fixed]="true">
+      <ion-row>
+        
+        <ion-col style="background-color: #00776E;margin-top: 20px; border-radius: 15px; height: 400px; width: 500px;"
+          class="ion-padding borde">
+          <img src="../../../assets/icon/iconoestudiante.png" alt="" height="100px">
+
+          <form [formGroup]="ionicForm" novalidate>
+
+            
+              <ion-input style="text-align: start; color:#fff; font-weight: bolder ;" labelPlacement="floating"
+                helperText="Formato: ayuda@dominio.cl" label="E-mail" aria-label="Email" formControlName="email"
+                class="input"></ion-input>
+            
+
+            <div style="padding-top: -26px;padding-bottom: 16px; text-align: center; font-size: 12px;"
+              *ngIf="this.ionicForm.controls?.['email'].touched && this.ionicForm.controls?.['email'].invalid">
+              <ion-text *ngIf="errorControl.email.errors?.required" class="errorInput" color="danger"> El correo es requerido.</ion-text>
+              <ion-text *ngIf="errorControl.email.errors?.pattern" class="errorInput" color="danger">Por favor ingresa un correo válido.</ion-text>
+            </div>
+
+            <ion-input style="text-align: start; color:#fff; font-weight: bolder ;" labelPlacement="floating"
+              helperText="Formato: 8 Caracteres" label="Contraseña" aria-label="Contraseña" type="password"
+              placeholder="password" formControlName="password" class="input"></ion-input>
+            <div class="ion-text-end" style="margin-top: 10px;">
+
+              <div style="padding-top: -26px;padding-bottom: 16px; text-align: center; font-size: 12px;"
+                *ngIf="this.ionicForm.controls?.['password'].touched && this.ionicForm.controls?.['password'].invalid">
+                <ion-text *ngIf="errorControl.password.errors?.required" class="errorInput " color="danger"> Se requiere ingresar una contraseña.</ion-text>
+                <ion-text *ngIf="errorControl.password.errors?.pattern" class="errorInput" color="danger">LA contraseña debe contener un carácter especial</ion-text>
+              </div>
+
+              <div>
+                <a style="color: #fff; font-size: 15px;" fill="outline" routerLink="/recuperar-contra">Recuperar
+                  contraseña</a>
+              </div>
+
+              <div style="text-align: center;">
+                <ion-button [disabled]="!ionicForm.valid" style="width: 200px;" color="tertiary" type="submit" class="ion-padding" (click)="login()">
+                  Ingresar
+                </ion-button>
+              </div>
+                
+            </div>
+          </form>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

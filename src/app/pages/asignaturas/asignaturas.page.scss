@@ -1,0 +1,15 @@
+ion-toolbar[color="dark"] {
+    --ion-color-dark: #003834;
+  }
+
+ion-item {
+    --background: transparent; /* Fondo transparente para el ítem */
+    --ion-item-background: transparent; /* Fondo transparente para el ítem */
+  }
+  
+  ion-card {
+    --background: #AAE7E3; /* Color de fondo del card */
+    color: #003834; /* Color del texto dentro del card */
+    margin: 5px 0; /* Espacio vertical entre cards */
+  }
+  

@@ -1,0 +1,17 @@
+ion-content.fondo{
+    --background: url(../../../assets/icon/fondo.jpg);
+}
+.borde{
+    border: 5px solid #00776E;
+}
+
+
+ion-button[color="tertiary"] {
+    --ion-color-tertiary: #39c5bb;
+  }
+  
+
+helperText{
+    color: #fff;
+    background-color: #fff;
+} 

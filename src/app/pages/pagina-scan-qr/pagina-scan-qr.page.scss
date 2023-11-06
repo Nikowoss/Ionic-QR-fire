@@ -1,0 +1,31 @@
+ion-button[color="tertiary"] {
+    --ion-color-tertiary: #39c5bb;
+  }
+
+  ion-toolbar[color="dark"] {
+    --ion-color-dark: #003834;
+  }
+  ion-menu-button.custom-menu-button {
+    --color: #003834;
+  }
+  
+  .qr-animation {
+    width: 220px;
+    height: 150px;
+    animation: bounceAnimation 2s linear infinite;
+    margin-top: 50px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  @keyframes bounceAnimation {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-40px); 
+    }
+  }
+  
