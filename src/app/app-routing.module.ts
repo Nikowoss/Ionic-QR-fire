@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ControlAccesoGuard } from './guards/control-acceso.guard';
 
 const routes: Routes = [
 
@@ -20,20 +21,25 @@ const routes: Routes = [
   },
   {
     path: 'pagina-scan-qr',
-    loadChildren: () => import('./pages/pagina-scan-qr/pagina-scan-qr.module').then( m => m.PaginaScanQrPageModule)
+    loadChildren: () => import('./pages/pagina-scan-qr/pagina-scan-qr.module').then( m => m.PaginaScanQrPageModule),
+    canActivate:[ControlAccesoGuard]
   },
   {
     path: 'perfil-estudiante',
-    loadChildren: () => import('./pages/perfil-estudiante/perfil-estudiante.module').then( m => m.PerfilEstudiantePageModule)
+    loadChildren: () => import('./pages/perfil-estudiante/perfil-estudiante.module').then( m => m.PerfilEstudiantePageModule),
+    canActivate:[ControlAccesoGuard]
   },
   {
     path: 'asignaturas',
-    loadChildren: () => import('./pages/asignaturas/asignaturas.module').then( m => m.AsignaturasPageModule)
+    loadChildren: () => import('./pages/asignaturas/asignaturas.module').then( m => m.AsignaturasPageModule),
+    canActivate:[ControlAccesoGuard]
   },
   {
     path: 'scancorrecto',
-    loadChildren: () => import('./pages/scancorrecto/scancorrecto.module').then( m => m.ScancorrectoPageModule)
-  },  {
+    loadChildren: () => import('./pages/scancorrecto/scancorrecto.module').then( m => m.ScancorrectoPageModule),
+    canActivate:[ControlAccesoGuard]
+  },
+  {
     path: 'crear',
     loadChildren: () => import('./pages/crear/crear.module').then( m => m.CrearPageModule)
   },
