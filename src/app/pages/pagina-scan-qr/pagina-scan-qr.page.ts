@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
+// import {BarcodeScanner} from '@awesome-cordova-plugins/barcode-scanner/ngx';
+
 
 @Component({
   selector: 'app-pagina-scan-qr',
@@ -9,12 +11,14 @@ import { Router } from '@angular/router';
 })
 export class PaginaScanQrPage implements OnInit {
 
+
   constructor(private storage: Storage,private router:Router){
     this.initStorage();
   }
   async initStorage() {
     await this.storage.create();
   }
+
 
   async guardarStringEnStorage(valor: string) {
     await this.storage.set('miClavee', valor);
@@ -26,6 +30,7 @@ export class PaginaScanQrPage implements OnInit {
   }
   ngOnInit() {
   }
+
   valorGuardado: any;
 
   async obtenerValorDelStorage() {
@@ -38,4 +43,6 @@ export class PaginaScanQrPage implements OnInit {
     }
   }
 
-}
+
+  }
+

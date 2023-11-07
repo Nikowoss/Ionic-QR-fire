@@ -10,13 +10,14 @@
             </a>
           </div>
           <h4 style="color: #AAE7E3">Recuperar Contraseña</h4>
+          <p class="subtitle">Ingresa tu correo para cambiar tu contraseña</p>
 
-            <ion-input style="color: #AAE7E3" [(ngModel)]="email" placeholder="Enter your email" class="input" />
+            <ion-input style="color: #AAE7E3" [(ngModel)]="email" placeholder="Ingresa tu correo" class="input" style="border-bottom: 1px solid #AAE7E3; color: #AAE7E3;"/>
 
             <div>
               <ion-button style="width: 200px; margin-top: 50px;" color="tertiary" type="submit" class="ion-padding; sendBtn"
-              (click)="reset()">
-                Ingresar
+              (click)="reset()" routerLink="/estudiante">
+                Enviar Correo
               </ion-button>
             </div>
         </ion-col>
