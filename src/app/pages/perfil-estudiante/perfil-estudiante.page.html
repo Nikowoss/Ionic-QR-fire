@@ -19,15 +19,6 @@
             <ion-input style="text-align: start;" placeholder="********" label="Contraseña" type="password"
               aria-label="Contraseña" name="Contraseña" disabled="true" [(ngModel)]="usuario.password"></ion-input>
 
-            <ion-input style="text-align: start; font-size: 15px;color: #003834;" labelPlacement="floating" helperText="Formato: 8 Caracteres" label="Nueva Contraseña"
-              type="password" aria-label="Contraseña" name="Nueva Contraseña" [(ngModel)]="valid_pass.pass1"></ion-input>
-
-            <ion-input style="text-align: start; font-size: 15px;color: #003834;" labelPlacement="floating" helperText="Debe ser igual a la de arriba" label="Repita Contraseña"
-              type="password" aria-label="Contraseña" name="Repita Contraseña" [(ngModel)]="valid_pass.pass2"></ion-input>
-
-            <ion-button color="primary" type="submit" class="ion-padding" [disabled]="miFormulario.invalid">
-              Cambiar contraseña
-            </ion-button>
           </form>
         </div>
       </ion-col>

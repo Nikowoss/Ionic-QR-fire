@@ -60,10 +60,10 @@ export class EstudiantePage implements OnInit {
         this.usuario.email=credentials.email;
         this.usuario.password=credentials.password;
         this.activar(1);
-        let ext: NavigationExtras = { //ver bien esto
-          state: { //ver bien esto
-            user : this.usuario //ver bien esto
-          } //ver bien esto
+        let ext: NavigationExtras = { 
+          state: { 
+            user : this.usuario 
+          } 
         }
         await this.storage.set('miClave', ext);
         console.log(ext)
