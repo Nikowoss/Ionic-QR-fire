@@ -57,12 +57,15 @@ export class EstudiantePage implements OnInit {
 
       try {
         await this.authService.loginUser(credentials.email, credentials.password);
+        this.usuario.email=credentials.email;
+        this.usuario.password=credentials.password;
         this.activar(1);
-        let ext: NavigationExtras = {
-          state: {
-            UsuarioActi : credentials.email
-          }
+        let ext: NavigationExtras = { //ver bien esto
+          state: { //ver bien esto
+            user : this.usuario //ver bien esto
+          } //ver bien esto
         }
+        await this.storage.set('miClave', ext);
         console.log(ext)
         this.router.navigate(['/asignaturas'],ext);
       } catch (error) {

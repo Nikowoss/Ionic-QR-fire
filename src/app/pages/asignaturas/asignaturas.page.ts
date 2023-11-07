@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
+
 
 interface Asignatura {
   nombre: string;
@@ -60,9 +62,32 @@ export class AsignaturasPage implements OnInit {
       porcentajeAsistencias: 0,
     },
   ];
+  
 
-  constructor() {}
+  constructor(private storage: Storage) {
+    this.initStorage();
+    this.obtenerValorDelStorage();
+  }
+  async initStorage() {
+    await this.storage.create();
+  }
 
+  async guardarStringEnStorage(valor: string) {
+    await this.storage.set('miClavee', valor);
+    console.log("Asistencia registrada")
+  }
+
+  valorGuardado: any;
+
+  async obtenerValorDelStorage() {
+    const crede = await this.storage.get('miClave');
+    if (crede !== null) {
+      this.valorGuardado = crede;
+      console.log('Session:', crede);
+    } else {
+      console.log('No se encontró ningún valor con la clave proporcionada en el storage.');
+    }
+  }
   ngOnInit() {
     this.asignaturas.forEach((asignatura) => {
       const [asistidas, total] = asignatura.asistencias.split(' de ').map(Number);
@@ -71,4 +96,5 @@ export class AsignaturasPage implements OnInit {
       asignatura.porcentajeAsistencias = (asistidas / total) * 100;
     });
   }
+  
 }
