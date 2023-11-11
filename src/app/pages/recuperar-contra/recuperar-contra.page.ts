@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { AutentificacionService } from 'src/app/autentificacion.service';
+import { AutentificacionService } from 'src/app/services/autentificacion.service';
 import { ToastController } from '@ionic/angular';
 
 @Component({

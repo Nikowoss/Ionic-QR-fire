@@ -9,7 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { MenuComponent } from './components/menu/menu.component';
 import { environment } from 'src/environments/environment'; // Importa environment, no environment.prod
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 
+ 
 @NgModule({
   declarations: [AppComponent, MenuComponent],
   imports: [
@@ -18,10 +20,12 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig), // Inicializa AngularFireModule con la configuración
     AngularFireAuthModule,
+    AngularFirestoreModule,
     IonicStorageModule.forRoot(),
-    IonicModule.forRoot(), AppRoutingModule],
+    IonicModule.forRoot(), AppRoutingModule], 
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
   exports: [],
 })
 export class AppModule {}
+

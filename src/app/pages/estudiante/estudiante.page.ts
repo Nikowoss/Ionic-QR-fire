@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
-import { AutentificacionService } from 'src/app/autentificacion.service';
+import { AutentificacionService } from 'src/app/services/autentificacion.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
