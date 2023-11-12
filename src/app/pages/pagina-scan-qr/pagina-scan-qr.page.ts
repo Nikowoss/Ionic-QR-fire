@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
+import { FirebaseComponent } from '../../components/firebase/firebase.component';
+import { AutentificacionService } from 'src/app/autentificacion.service';
 // import {BarcodeScanner} from '@awesome-cordova-plugins/barcode-scanner/ngx';
 
 
@@ -12,7 +14,11 @@ import { Router } from '@angular/router';
 export class PaginaScanQrPage implements OnInit {
 
 
-  constructor(private storage: Storage,private router:Router){
+  constructor(private storage: Storage,
+    private router:Router,
+    private autentificacionService: AutentificacionService,
+    private firebaseComponent: FirebaseComponent
+    ){
     this.initStorage();
   }
   async initStorage() {
@@ -24,9 +30,9 @@ export class PaginaScanQrPage implements OnInit {
     await this.storage.set('miClavee', valor);
   }
   
-  onClick(ruta:string)
-  {
-    this.router.navigate(['/scancorrecto'])
+  onClick(ruta: string) {
+    this.firebaseComponent.enviarDatosAFirestore();
+    this.router.navigate(['/scancorrecto']);
   }
   ngOnInit() {
   }
