@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 export class ScancorrectoPage implements OnInit {
 
   constructor(private storage: Storage,private router:Router){
-    this.obtenerValorDelStorage();
   }
 
   onClick(ruta:string)
@@ -21,16 +20,5 @@ export class ScancorrectoPage implements OnInit {
   ngOnInit() {
   }
 
-  valorGuardado: any;
-
-  async obtenerValorDelStorage() {
-    const valor = await this.storage.get('miClavee');
-    if (valor !== null) {
-      this.valorGuardado = valor;
-      console.log('Asistencia:', valor);
-    } else {
-      console.log('No se encontró ningún valor con la clave proporcionada en el storage.');
-    }
-  }
 
 }

@@ -16,12 +16,19 @@
           
 
           <img class="qr-animation" src="../../../assets/icon/scan.png" alt="">
-          <ion-button (click)="onClick('scancorrecto'); guardarStringEnStorage('Guardada')" style="margin-top: 20px;" expand="full" fill="solid" shape="round" color="tertiary" type="submit">
+          <ion-button (click)="onClick('scancorrecto')" (click)="guardarDato()" style="margin-top: 20px;" expand="full" fill="solid" shape="round" color="tertiary" type="submit">
             Escanear QR
           </ion-button>
         </ion-col>
         <ion-col sizeXl="3" sizeSm="3"></ion-col>
       </ion-row>
+      
     </ion-grid>
+  </div>
+  <div *ngIf="dato">
+    <p>Asistencias Guardadas Localmente: {{ dato }}</p>
+  </div>
+  <div *ngIf="!dato">
+    <p>No hay asistencias guardadas Localmente </p>
   </div>
 </ion-content>

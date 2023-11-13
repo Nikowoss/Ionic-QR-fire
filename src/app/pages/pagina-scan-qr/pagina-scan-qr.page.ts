@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
 import { FirebaseComponent } from '../../components/firebase/firebase.component';
 import { AutentificacionService } from 'src/app/autentificacion.service';
+import { DataService } from 'src/app/services/data.service';
+
 // import {BarcodeScanner} from '@awesome-cordova-plugins/barcode-scanner/ngx';
 
 
@@ -13,42 +15,42 @@ import { AutentificacionService } from 'src/app/autentificacion.service';
 })
 export class PaginaScanQrPage implements OnInit {
 
+  dato: any;
+  asistencia: any = [];
+  asistenciaa: any[] = [];
+  firebaseSvc = inject(AutentificacionService);
 
-  constructor(private storage: Storage,
-    private router:Router,
+  constructor(private dataService: DataService,
+    private router: Router,
     private autentificacionService: AutentificacionService,
-    private firebaseComponent: FirebaseComponent
-    ){
-    this.initStorage();
-  }
-  async initStorage() {
-    await this.storage.create();
+    private firebaseComponent: FirebaseComponent) { }
+
+  ionViewDidEnter() {
+    this.obtenerDato();
   }
 
-
-  async guardarStringEnStorage(valor: string) {
-    await this.storage.set('miClavee', valor);
+  async guardarDato() {
+    await this.dataService.guardarDato('Asistencia Stoarge',);
+    this.obtenerDato();
   }
-  
+  async obtenerDato() {
+    this.dato = await this.dataService.obtenerDato('Asistencia Stoarge');
+  }
   onClick(ruta: string) {
     this.firebaseComponent.enviarDatosAFirestore();
     this.router.navigate(['/scancorrecto']);
   }
-  ngOnInit() {
+  async ngOnInit() {
+    this.asistencia = await this.firebaseSvc.getAttendances();
+
+    this.asistenciaa = await this.firebaseSvc.getAttendancess();
+
+    //console.log(this.asistenciaa);
+    //Hacer el tema de interfaces
+    //Hacer buen la base
+    //
   }
+  
 
-  valorGuardado: any;
-
-  async obtenerValorDelStorage() {
-    const valor = await this.storage.get('miClavee');
-    if (valor !== null) {
-      this.valorGuardado = valor;
-      console.log('Asistencia:', valor);
-    } else {
-      console.log('No se encontró ningún valor con la clave proporcionada en el storage.');
-    }
-  }
-
-
-  }
+}
 
