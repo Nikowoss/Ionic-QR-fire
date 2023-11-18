@@ -12,9 +12,7 @@
   <ion-list style="background-color: #00BFB1;">
     <ion-item *ngFor="let asistencia of asistencias">
       <ion-label>
-        {{asistencia.Asignatura}} {{asistencia.mensaje}}
+        {{asistencia.Asignatura}} {{asistencia.mensaje}} {{asistencia.fecha.toDate()| date:'dd/MM/yyyy hh:mm a'}}
       </ion-label>
     </ion-item>
   </ion-list>
-  
-</ion-content>
