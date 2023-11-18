@@ -1,11 +1,14 @@
+import { Usuario } from './../../interfaces/usuario';
 import { Component, OnInit, inject } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
 import { FirebaseComponent } from '../../components/firebase/firebase.component';
 import { AutentificacionService } from 'src/app/autentificacion.service';
 import { DataService } from 'src/app/services/data.service';
+import { Asistencia } from 'src/app/interfaces/asistencia';
 
 // import {BarcodeScanner} from '@awesome-cordova-plugins/barcode-scanner/ngx';
+
 
 
 @Component({
@@ -16,12 +19,19 @@ import { DataService } from 'src/app/services/data.service';
 export class PaginaScanQrPage implements OnInit {
 
   dato: any;
-  asistencia: any = [];
-  asistenciaa: any[] = [];
-  firebaseSvc = inject(AutentificacionService);
+  private path = 'Asistencia/';
 
-  constructor(private dataService: DataService,
+  nuevaAsis: Asistencia = {
+    Asignatura: 'Portafolio',
+    estudiante: '',
+    fecha: new Date,
+    mensaje: 'Asistencia Guardada'
+  }
+
+
+  constructor(private database: DataService,
     private router: Router,
+    private storage: Storage,
     private autentificacionService: AutentificacionService,
     private firebaseComponent: FirebaseComponent) { }
 
@@ -30,27 +40,34 @@ export class PaginaScanQrPage implements OnInit {
   }
 
   async guardarDato() {
-    await this.dataService.guardarDato('Asistencia Stoarge',);
+    await this.database.guardarDato('Asistencia Stoarge',);
     this.obtenerDato();
   }
   async obtenerDato() {
-    this.dato = await this.dataService.obtenerDato('Asistencia Stoarge');
+    this.dato = await this.database.obtenerDato('Asistencia Stoarge');
   }
   onClick(ruta: string) {
     this.firebaseComponent.enviarDatosAFirestore();
     this.router.navigate(['/scancorrecto']);
   }
-  async ngOnInit() {
-    this.asistencia = await this.firebaseSvc.getAttendances();
 
-    this.asistenciaa = await this.firebaseSvc.getAttendancess();
+  async guardarasis() {
+    const userData = await this.storage.get('miClave');
 
-    //console.log(this.asistenciaa);
-    //Hacer el tema de interfaces
-    //Hacer buen la base
-    //
+    if (userData && userData.state && userData.state.user && userData.state.user.email) {
+      const userEmail = userData.state.user.email;
+      console.log('Correo:', userEmail);
+      const id = this.database.getID();
+      this.nuevaAsis.estudiante=userEmail;
+      this.database.crearDoc(this.nuevaAsis, this.path, id)
+    } else {
+      console.error('Nota el correo ql');
+    }
   }
-  
+  ngOnInit() {
+    
+  }
+
 
 }
 

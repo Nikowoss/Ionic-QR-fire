@@ -1,5 +1,6 @@
 export interface Asistencia {
-    clase:string,
-    fecha:string,
-    hora:string,
+    Asignatura:string,
+    estudiante:string,
+    fecha:Date,
+    mensaje:string
 }

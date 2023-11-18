@@ -1,9 +1,6 @@
 import { Injectable, inject} from '@angular/core';
-import firebase from 'firebase/compat/app';
 import {AngularFireAuth} from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/compat/firestore'
-import { getFirestore, setDoc, doc, getDoc, addDoc } from '@angular/fire/firestore'
-import { collection, getDocs, query, where } from 'firebase/firestore';
 import { DataService } from './services/data.service';
 
 
@@ -15,10 +12,13 @@ export class AutentificacionService {
   utilsSvc = inject(DataService);
 
 
-  constructor(public ngFireAuth: AngularFireAuth, public Firestore: AngularFirestore) {
+  constructor(public ngFireAuth: AngularFireAuth, public Firestore: AngularFirestore,private afAuth: AngularFireAuth) {
 
   }
-
+  getCurrentUser() {
+    return this.afAuth.authState.toPromise();
+  }
+  
   async registerUser(email: string, password: string, name: string) {
     return await this.ngFireAuth.createUserWithEmailAndPassword(email, password)
 
@@ -45,15 +45,8 @@ export class AutentificacionService {
     return this.Firestore.collection('prueba').add(data);
   }
 
-  //NICO WEIANDO AQUI
-  //A
+  getDoc(id:any){
+    return this.Firestore.collection('prueba').doc(id).valueChanges
+  }
 
-  async getAttendances() {
-    const querySnapshot = await getDocs(collection(getFirestore(), 'prueba'));
-    return querySnapshot.docs.map(doc => doc.data());
-  }
-  async getAttendancess() {
-    const querySnapshot = await getDocs(collection(getFirestore(), 'pruebanico'));
-    return querySnapshot.docs.map(doc => doc.data());
-  }
 }

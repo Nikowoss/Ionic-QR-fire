@@ -10,33 +10,11 @@
 
 <ion-content class="ion-padding" style="--background: #00776E; background-color: #00776E;">
   <ion-list style="background-color: #00BFB1;">
-    <ng-container *ngFor="let asignatura of asignaturas">
-      <ion-item (click)="asignatura.expandida = !asignatura.expandida">
-        <ion-label style="color: #AAE7E3; font-weight: 550; font-size: 15px;">{{ asignatura.nombre }}</ion-label>
-        <ion-icon style="color: #AAE7E3;" slot="end" [name]="asignatura.expandida ? 'arrow-up' : 'arrow-down'"></ion-icon>
-      </ion-item>
-      <ion-card *ngIf="asignatura.expandida">
-        <ion-card-header>
-          {{ asignatura.nombre }}
-        </ion-card-header>
-        <ion-card-content style="font-size: 14px; color: #00776E; font-weight: 700;">
-          Asistencias: {{ asignatura.asistencias }} ({{ asignatura.porcentajeAsistencias }}%)
-          <br>
-          <br>
-          <table style="width: 100%;">
-            <tr>
-              <th style="text-align: left; ">Fecha</th>
-              <th style="text-align: center;">Asistencia</th>
-            </tr>
-            <ng-container *ngFor="let clase of asignatura.contenido">
-              <tr>
-                <td style="text-align: left; font-size: 14px; color: #00776E; font-weight: 500;">{{ clase.fecha }}</td>
-                <td style="text-align: center; font-size: 14px;color: #00776E; font-weight: 500;">{{ clase.asistencia }}</td>
-              </tr>
-            </ng-container>
-          </table>
-        </ion-card-content>
-      </ion-card>
-    </ng-container>
+    <ion-item *ngFor="let asistencia of asistencias">
+      <ion-label>
+        {{asistencia.Asignatura}} {{asistencia.mensaje}}
+      </ion-label>
+    </ion-item>
   </ion-list>
+  
 </ion-content>

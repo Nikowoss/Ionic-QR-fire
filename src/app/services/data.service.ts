@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor(private storage: Storage) {
+  constructor(private storage: Storage, private database:AngularFirestore) {
     this.init();
   }
 
@@ -22,5 +23,21 @@ export class DataService {
   obtenerDato(clave: string): Promise<any> {
     return this.storage.get(clave);
   }
-
+  //PROBANDOWAS
+  crearDoc(data:any,path:string,id:string){
+    const collection = this.database.collection(path);
+    return collection.doc(id).set(data)
+  }
+  getDoc(path:string,id:string){
+    const collection = this.database.collection(path);
+    return collection.doc(id).valueChanges
+  }
+  getID(){
+    return this.database.createId();
+  }
+  getCollection<tipo>(path: string){
+    const collection = this.database.collection<tipo>(path);
+    return collection.valueChanges();
+  }
+  
 }
