@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,8 @@ export class DataService {
     const collection = this.database.collection<tipo>(path);
     return collection.valueChanges();
   }
-  
+  getCollectionxID<tipo>(path: string, conditionField: string, conditionValue: any) {
+    const collection = this.database.collection<tipo>(path, ref => ref.where(conditionField, '==', conditionValue));
+    return collection.valueChanges();
+  }
 }

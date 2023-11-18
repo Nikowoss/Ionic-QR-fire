@@ -3,7 +3,7 @@ import { Storage } from '@ionic/storage-angular';
 import { DataService } from 'src/app/services/data.service';
 import { Asistencia } from 'src/app/interfaces/asistencia';
 
-  
+
 
 //interface Asignatura {
 //  nombre: string;
@@ -23,9 +23,11 @@ import { Asistencia } from 'src/app/interfaces/asistencia';
 export class AsignaturasPage implements OnInit {
 
   private path = 'Asistencia/';
-  asistencias:Asistencia[]=[];
+  private conditionField = 'estudiante';
+  private conditionValue = '';
+  asistencias: Asistencia[] = [];
 
-  constructor(private storage: Storage,private database: DataService) {
+  constructor(private storage: Storage, private database: DataService) {
     this.initStorage();
     this.obtenerValorDelStorage();
   }
@@ -49,17 +51,25 @@ export class AsignaturasPage implements OnInit {
       console.log('No se encontró ningún valor con la clave proporcionada en el storage.');
     }
   }
-  getAsistencias(){
-    this.database.getCollection<Asistencia>(this.path).subscribe(res=>{
+  getAsistencias() {
+    this.database.getCollectionxID<Asistencia>(this.path,this.conditionField,this.conditionValue).subscribe(res => {
       console.log(res)
       this.asistencias = res;
     })
   }
 
-  
 
-  ngOnInit() {
-    this.getAsistencias();
+
+  async ngOnInit() {
+    const userData = await this.storage.get('miClave');
+
+    if (userData && userData.state && userData.state.user && userData.state.user.email) {
+      const userEmail = userData.state.user.email;
+      console.log('Correo:', userEmail);
+      this.conditionValue = userEmail;
+      this.getAsistencias();
+
+    }
+
   }
-  
 }
