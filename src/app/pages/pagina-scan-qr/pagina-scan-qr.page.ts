@@ -22,12 +22,11 @@ export class PaginaScanQrPage implements OnInit {
   private path = 'Asistencia/';
 
   nuevaAsis: Asistencia = {
-    Asignatura: 'Portafolio',
+    Asignatura: '',
     estudiante: '',
     fecha: new Date,
     mensaje: 'Asistencia Guardada'
   }
-
 
   constructor(private database: DataService,
     private router: Router,
@@ -47,11 +46,10 @@ export class PaginaScanQrPage implements OnInit {
     this.dato = await this.database.obtenerDato('Asistencia Stoarge');
   }
   onClick(ruta: string) {
-    this.firebaseComponent.enviarDatosAFirestore();
     this.router.navigate(['/scancorrecto']);
   }
 
-  async guardarasis() {
+  async guardarasis(asignatura: string) {
     const userData = await this.storage.get('miClave');
 
     if (userData && userData.state && userData.state.user && userData.state.user.email) {
@@ -59,6 +57,7 @@ export class PaginaScanQrPage implements OnInit {
       console.log('Correo:', userEmail);
       const id = this.database.getID();
       this.nuevaAsis.estudiante=userEmail;
+      this.nuevaAsis.Asignatura= asignatura;
       this.database.crearDoc(this.nuevaAsis, this.path, id)
     } else {
       console.error('Nota el correo ql');
