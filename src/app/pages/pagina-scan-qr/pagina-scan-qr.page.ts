@@ -6,9 +6,7 @@ import { FirebaseComponent } from '../../components/firebase/firebase.component'
 import { AutentificacionService } from 'src/app/autentificacion.service';
 import { DataService } from 'src/app/services/data.service';
 import { Asistencia } from 'src/app/interfaces/asistencia';
-
-// import {BarcodeScanner} from '@awesome-cordova-plugins/barcode-scanner/ngx';
-
+import {BarcodeScanner} from '@awesome-cordova-plugins/barcode-scanner/ngx'
 
 
 @Component({
@@ -27,8 +25,10 @@ export class PaginaScanQrPage implements OnInit {
     fecha: new Date,
     mensaje: 'Asistencia Guardada'
   }
+  texto:string=''
 
   constructor(private database: DataService,
+    private barcodescanner:BarcodeScanner,
     private router: Router,
     private storage: Storage,
     private autentificacionService: AutentificacionService,
@@ -51,6 +51,12 @@ export class PaginaScanQrPage implements OnInit {
 
   async guardarasis(asignatura: string) {
     const userData = await this.storage.get('miClave');
+    this.barcodescanner.scan().then(barcodedata=>{
+      console.log("Scaneando...", barcodedata);
+      this.texto=(JSON.stringify(barcodedata));
+    }).catch(err=>{
+      console.log("ERROR AL ESCANEAR!!!!");
+    })
 
     if (userData && userData.state && userData.state.user && userData.state.user.email) {
       const userEmail = userData.state.user.email;

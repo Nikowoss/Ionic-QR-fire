@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 import { FirebaseComponent } from './components/firebase/firebase.component';
+import {BarcodeScanner} from '@awesome-cordova-plugins/barcode-scanner/ngx'
 
 @NgModule({
   declarations: [AppComponent, MenuComponent],
@@ -25,7 +26,7 @@ import { FirebaseComponent } from './components/firebase/firebase.component';
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    FirebaseComponent
+    FirebaseComponent,BarcodeScanner
   ],
   bootstrap: [AppComponent],
   exports: [],
