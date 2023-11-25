@@ -39,15 +39,8 @@ export class PaginaScanQrPage implements OnInit {
     this.obtenerDato();
   }
 
-  async guardarDato() {
-    await this.database.guardarDato('Asistencia Stoarge',);
-    this.obtenerDato();
-  }
   async obtenerDato() {
     this.dato = await this.database.obtenerDato('Asistencia Stoarge');
-  }
-  onClick(ruta: string) {
-    this.router.navigate(['/scancorrecto']);
   }
 
   async guardarasis() {
@@ -63,6 +56,9 @@ export class PaginaScanQrPage implements OnInit {
         this.nuevaAsis.estudiante = userEmail;
         this.nuevaAsis.Asignatura = this.qr;
         this.database.crearDoc(this.nuevaAsis, this.path, id)
+        this.database.guardarDato('Asistencia Stoarge',);
+        this.obtenerDato();
+        this.router.navigate(['/scancorrecto']);
       } else {
         console.error('Nota el correo ql');
       }

@@ -11,32 +11,10 @@
 <ion-content class="ion-padding" style="--background: #00776E; background-color: #00776E;">
   <div style="text-align: center;">
     <ion-grid [fixed]="true">
-      <ion-row>
-        <ion-col sizeXl="4" sizeMd="4" sizeSm="4">
-          <ion-card style="height: 330px;">
-            <img alt="Silhouette of mountains" src="../../assets/icon/calidad.jpg" />
-            <ion-card-header>
-              <ion-card-title>Portafolio</ion-card-title>
-            </ion-card-header>
-            <ion-button (click)="onClick('scancorrecto')" (click)="guardarasis()" (click)="guardarDato()"
-              style="margin-top: 20px;" fill="solid" shape="round" color="tertiary" type="submit">
-              Escanear QR
-            </ion-button>
-          </ion-card>
-        </ion-col>
-        <ion-col sizeXl="4" sizeMd="4" sizeSm="4">
-          <ion-card style="height: 330px;">
-            <img alt="Silhouette of mountains" src="../../assets/icon/web.jpg" />
-            <ion-card-header>
-              <ion-card-title>Arquitectura</ion-card-title>
-            </ion-card-header>
-            <ion-button (click)="onClick('scancorrecto')" (click)="guardarasis()" (click)="guardarDato()"
-              style="margin-top: 20px;" fill="solid" shape="round" color="tertiary" type="submit">
-              Escanear QR
-            </ion-button>
-          </ion-card>
-        </ion-col>
-      </ion-row>
+      <ion-button (click)="guardarasis()" style="margin-top: 20px;" fill="solid" shape="round" color="tertiary"
+        type="submit">
+        Escanear QR
+      </ion-button>
     </ion-grid>
   </div>
 </ion-content>
