@@ -24,7 +24,7 @@
     "@awesome-cordova-plugins/core": "^6.4.0",
     "@capacitor/android": "5.0.4",
     "@capacitor/app": "4.1.1",
-    "@capacitor/core": "4.7.3",
+    "@capacitor/core": "^5.5.1",
     "@capacitor/haptics": "4.1.0",
     "@capacitor/keyboard": "4.1.1",
     "@capacitor/status-bar": "4.1.1",
@@ -33,7 +33,7 @@
     "@ionic/storage-angular": "^4.0.0",
     "firebase": "^9.22.1",
     "ionicons": "^7.0.0",
-    "phonegap-plugin-barcodescanner": "^8.1.0",
+    "Phonegap-plugin-barcodescanner": "git+https://github.com/StarleyDev/barcodescanner-sdk31.git",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

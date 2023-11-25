@@ -6,7 +6,7 @@ import { FirebaseComponent } from '../../components/firebase/firebase.component'
 import { AutentificacionService } from 'src/app/autentificacion.service';
 import { DataService } from 'src/app/services/data.service';
 import { Asistencia } from 'src/app/interfaces/asistencia';
-import {BarcodeScanner} from '@awesome-cordova-plugins/barcode-scanner/ngx'
+import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx'
 
 
 @Component({
@@ -17,6 +17,7 @@ import {BarcodeScanner} from '@awesome-cordova-plugins/barcode-scanner/ngx'
 export class PaginaScanQrPage implements OnInit {
 
   dato: any;
+  qr: any;
   private path = 'Asistencia/';
 
   nuevaAsis: Asistencia = {
@@ -25,10 +26,10 @@ export class PaginaScanQrPage implements OnInit {
     fecha: new Date,
     mensaje: 'Asistencia Guardada'
   }
-  texto:string=''
+  texto: string = ''
 
   constructor(private database: DataService,
-    private barcodescanner:BarcodeScanner,
+    private barcodescanner: BarcodeScanner,
     private router: Router,
     private storage: Storage,
     private autentificacionService: AutentificacionService,
@@ -49,28 +50,31 @@ export class PaginaScanQrPage implements OnInit {
     this.router.navigate(['/scancorrecto']);
   }
 
-  async guardarasis(asignatura: string) {
+  async guardarasis() {
     const userData = await this.storage.get('miClave');
-    this.barcodescanner.scan().then(barcodedata=>{
+    this.barcodescanner.scan().then(barcodedata => {
       console.log("Scaneando...", barcodedata);
-      this.texto=(JSON.stringify(barcodedata));
-    }).catch(err=>{
+      if (userData && userData.state && userData.state.user && userData.state.user.email) {
+        this.qr = barcodedata.text
+        this.texto = (JSON.stringify(barcodedata));
+        const userEmail = userData.state.user.email;
+        console.log('Correo:', userEmail);
+        const id = this.database.getID();
+        this.nuevaAsis.estudiante = userEmail;
+        this.nuevaAsis.Asignatura = this.qr;
+        this.database.crearDoc(this.nuevaAsis, this.path, id)
+      } else {
+        console.error('Nota el correo ql');
+      }
+
+    }).catch(err => {
       console.log("ERROR AL ESCANEAR!!!!");
     })
 
-    if (userData && userData.state && userData.state.user && userData.state.user.email) {
-      const userEmail = userData.state.user.email;
-      console.log('Correo:', userEmail);
-      const id = this.database.getID();
-      this.nuevaAsis.estudiante=userEmail;
-      this.nuevaAsis.Asignatura= asignatura;
-      this.database.crearDoc(this.nuevaAsis, this.path, id)
-    } else {
-      console.error('Nota el correo ql');
-    }
+
   }
   ngOnInit() {
-    
+
   }
 
 
