@@ -1,18 +1,50 @@
-  <ion-header>
-    <ion-toolbar color="dark">
-      <ion-buttons slot="start">
-        <ion-menu-button menu="menu"></ion-menu-button>
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu" style="color: #00BFB1;"></ion-menu-button>
+      
 
-      </ion-buttons>
-      <ion-title style="color: #AAE7E3; text-align: center; justify-content: center; margin-right: 30px;">Asignaturas</ion-title>
-    </ion-toolbar>
+    </ion-buttons>
+    <ion-title style="color: #AAE7E3; text-align: center; justify-content: center; margin-right: 30px;">Asignaturas</ion-title>
+  </ion-toolbar>
 </ion-header>
+
 
 <ion-content class="ion-padding" style="--background: #00776E; background-color: #00776E;">
   <ion-list style="background-color: #00BFB1;">
-    <ion-item *ngFor="let asistencia of asistencias">
-      <ion-label>
-        {{asistencia.Asignatura}} {{asistencia.mensaje}} {{asistencia.fecha.toDate()| date:'dd/MM/yyyy hh:mm a'}}
-      </ion-label>
-    </ion-item>
+    <ng-container *ngFor="let asignatura of asistencias">
+      <ion-item (click)="toggleExpandida(asignatura)">
+        <ion-label>
+          {{ asignatura.asignatura }}
+        </ion-label>
+        <ion-icon style="color: #AAE7E3;" slot="end" [name]="asignatura.detalles[0].expandida ? 'arrow-up' : 'arrow-down'"></ion-icon>
+      </ion-item>
+      <ion-card *ngIf="asignatura.detalles[0].expandida">
+        <ion-card-header>
+          {{ asignatura.asignatura }}
+        </ion-card-header>
+        <ion-card-content style="font-size: 14px; color: #00776E; font-weight: 700;">
+          <table style="width: 100%;">
+            <tr>
+              <th style="text-align: left; ">Fecha</th>
+              <th style="text-align: center;">Asistencia</th>
+            </tr>
+            <ng-container *ngFor="let clase of asignatura.detalles">
+              <tr>
+                <td style="text-align: left; font-size: 14px; color: #00776E; font-weight: 500;">{{ clase.fecha.toDate() | date: "dd 'de' MMMM 'del' y":'es' }}</td>
+                <td style="text-align: center; font-size: 14px;color: #00776E; font-weight: 500;">{{ clase.asistencia }}</td>
+              </tr>
+            </ng-container>
+          </table>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
   </ion-list>
+  <ion-fab vertical="bottom" horizontal="center">
+    <ion-fab-button routerLink="/pagina-scan-qr" style="padding: 0;">
+      <ion-img style="background-color: #00BFB1;" src="assets/icon/QR.png"></ion-img>
+    </ion-fab-button>
+  </ion-fab>
+  
+
+</ion-content>

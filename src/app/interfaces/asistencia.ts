@@ -3,4 +3,5 @@ export interface Asistencia {
     estudiante:string,
     fecha:Date,
     mensaje:string
+    expandida?: boolean;
 }

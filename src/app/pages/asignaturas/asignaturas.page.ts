@@ -3,18 +3,6 @@ import { Storage } from '@ionic/storage-angular';
 import { DataService } from 'src/app/services/data.service';
 import { Asistencia } from 'src/app/interfaces/asistencia';
 
-
-
-//interface Asignatura {
-//  nombre: string;
-//  asistencias: string;
-//  contenido: Array<{ fecha: string; asistencia: string }>;
-//  expandida: boolean;
-//  clases: number;
-//  totalClases: number;
-// porcentajeAsistencias: number;
-//}
-
 @Component({
   selector: 'app-asignaturas',
   templateUrl: './asignaturas.page.html',
@@ -25,12 +13,13 @@ export class AsignaturasPage implements OnInit {
   private path = 'Asistencia/';
   private conditionField = 'estudiante';
   private conditionValue = '';
-  asistencias: Asistencia[] = [];
+  asistencias: { asignatura: string, detalles: Asistencia[] }[] = [];
 
   constructor(private storage: Storage, private database: DataService) {
     this.initStorage();
     this.obtenerValorDelStorage();
   }
+
   async initStorage() {
     await this.storage.create();
   }
@@ -51,14 +40,31 @@ export class AsignaturasPage implements OnInit {
       console.log('No se encontró ningún valor con la clave proporcionada en el storage.');
     }
   }
+
   getAsistencias() {
-    this.database.getCollectionxID<Asistencia>(this.path,this.conditionField,this.conditionValue).subscribe(res => {
-      console.log(res)
-      this.asistencias = res;
+    this.database.getCollectionxID<Asistencia>(this.path, this.conditionField, this.conditionValue).subscribe(res => {
+      console.log(res);
+
+      // Agrupar asistencias por asignatura
+      const groupedAsistencias = res.reduce((acc, asistencia) => {
+        const existingAsignatura = acc.find(item => item.asignatura === asistencia.Asignatura);
+        if (existingAsignatura) {
+          existingAsignatura.detalles.push(asistencia);
+        } else {
+          acc.push({ asignatura: asistencia.Asignatura, detalles: [asistencia] });
+        }
+        return acc;
+      }, [] as { asignatura: string, detalles: Asistencia[] }[]);
+
+      this.asistencias = groupedAsistencias;
     })
   }
 
-
+  toggleExpandida(asignatura: { asignatura: string, detalles: Asistencia[] }) {
+    asignatura.detalles.forEach(detalle => {
+      detalle.expandida = !detalle.expandida;
+    });
+  }
 
   async ngOnInit() {
     const userData = await this.storage.get('miClave');
@@ -68,8 +74,6 @@ export class AsignaturasPage implements OnInit {
       console.log('Correo:', userEmail);
       this.conditionValue = userEmail;
       this.getAsistencias();
-
     }
-
   }
 }

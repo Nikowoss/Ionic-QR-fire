@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="dark">
     <ion-buttons slot="start">
-      <ion-menu-button menu="menu"></ion-menu-button>
+      <ion-menu-button menu="menu" style="color: #00BFB1;"></ion-menu-button>
     </ion-buttons>
     <ion-title style="color: #AAE7E3; text-align: center; justify-content: center; margin-right: 40px;">Escaneo
       QR</ion-title>
@@ -17,4 +17,9 @@
       </ion-button>
     </ion-grid>
   </div>
+  <ion-fab vertical="bottom" horizontal="center">
+    <ion-fab-button routerLink="/pagina-scan-qr" style="padding: 0;">
+      <ion-img style="background-color: #00BFB1;" src="assets/icon/QR.png"></ion-img>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
