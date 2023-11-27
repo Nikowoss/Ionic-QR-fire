@@ -24,7 +24,7 @@ export class PaginaScanQrPage implements OnInit {
     Asignatura: '',
     estudiante: '',
     fecha: new Date,
-    mensaje: 'Asistencia Guardada'
+    asistencia: 'Presente'
   }
   texto: string = ''
 

@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.appqr.appqr',
-  appName: 'Ionic-QR',
+  appName: 'ScanClass',
   webDir: 'www',
   server: {
     androidScheme: 'https'
