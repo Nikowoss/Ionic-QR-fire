@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class ScancorrectoPage implements OnInit {
 
-  constructor(private router:Router) {}
+  constructor(private storage: Storage,private router:Router){
+  }
 
   onClick(ruta:string)
   {
@@ -17,5 +19,6 @@ export class ScancorrectoPage implements OnInit {
 
   ngOnInit() {
   }
+
 
 }

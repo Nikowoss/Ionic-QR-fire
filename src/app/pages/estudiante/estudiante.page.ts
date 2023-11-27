@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { AutentificacionService } from 'src/app/autentificacion.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
+import { Usuario } from './../../interfaces/usuario';
 
 @Component({
   selector: 'app-estudiante',
@@ -11,15 +13,19 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
 })
 export class EstudiantePage implements OnInit {
   ionicForm: FormGroup;
-
+  usuario: Usuario = {
+    email: '',
+    password: ''
+  }
   constructor(
     private toastController: ToastController,
     private alertController: AlertController,
     private loadingController: LoadingController,
     private authService: AutentificacionService,
     private router: Router,
-    public formBuilder: FormBuilder
-  ) {}
+    public formBuilder: FormBuilder,
+    private storage: Storage
+  ) { }
 
   ngOnInit() {
     this.ionicForm = this.formBuilder.group({
@@ -51,20 +57,36 @@ export class EstudiantePage implements OnInit {
 
       try {
         await this.authService.loginUser(credentials.email, credentials.password);
-        this.router.navigate(['/asignaturas']);
+        this.usuario.email=credentials.email;
+        this.usuario.password=credentials.password;
+        this.activar(1);
+        let ext: NavigationExtras = { 
+          state: { 
+            user : this.usuario 
+          } 
+        }
+        await this.storage.set('miClave', ext);
+        console.log(ext)
+        this.router.navigate(['/asignaturas'],ext);
       } catch (error) {
         this.presentErrorMessage('Usuario y contraseña incorrectos');
+        this.activar(0);
       } finally {
         loading.dismiss();
       }
     } else {
       loading.dismiss();
       this.presentErrorMessage('Por favor, proporciona todos los valores requeridos.');
+      this.activar(0);
     }
   }
 
   get errorControl() {
     return this.ionicForm.controls;
+  }
+
+  async activar(valor: Number) {
+    await this.storage.set("sesion", valor);
   }
 
   async presentErrorMessage(message: string) {

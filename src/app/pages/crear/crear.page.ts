@@ -25,14 +25,7 @@ export class CrearPage implements OnInit {
       fullname:['',
         [Validators.required]
       ],
-      contact:['',
-      [
-        Validators.required,
-        Validators.pattern("^[0-9]*$"),
-        Validators.minLength(10),
-        // Validators.min(10)
-      ]
-    ],
+
       email: [
         '',
         [
@@ -41,7 +34,7 @@ export class CrearPage implements OnInit {
         ],
       ],
       password: ['', [
-        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-8])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}'),
+        Validators.pattern('^[a-zA-Z0-9]{8,}$'),
         Validators.required,
       ],
     ],
@@ -67,7 +60,7 @@ export class CrearPage implements OnInit {
         this.router.navigate(['/estudiante'])
       }
     } else {
-      return console.log('Please provide all the required values!');
+      return console.log('Por favor rellena todos los campos');
     }
   }
 
