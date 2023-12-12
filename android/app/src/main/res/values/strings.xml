@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">Ionic-QR</string>
-    <string name="title_activity_main">Ionic-QR</string>
-    <string name="package_name">com.appqr.appqr</string>
-    <string name="custom_url_scheme">com.appqr.appqr</string>
-</resources>

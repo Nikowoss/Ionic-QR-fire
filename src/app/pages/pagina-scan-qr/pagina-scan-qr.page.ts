@@ -58,7 +58,9 @@ export class PaginaScanQrPage implements OnInit {
         this.database.crearDoc(this.nuevaAsis, this.path, id)
         this.database.guardarDato('Asistencia Stoarge',);
         this.obtenerDato();
-        this.router.navigate(['/scancorrecto']);
+        if (this.nuevaAsis.Asignatura.trim() !== '') {
+          this.router.navigate(['/asignaturas'], { state: { showAlert: true } });
+        }
       } else {
         console.error('Nota el correo ql');
       }
