@@ -17,7 +17,7 @@ ScanClass es una aplicación que simplifica el proceso de registro de asistencia
 
 ScanClass simplifica y mejora la administración de asistencias en entornos educativos, proporcionando a profesores y estudiantes una herramienta confiable y segura para el seguimiento preciso de la asistencia a clases.
 
-Link descarga APK: https://github.com/Nikowoss/Ionic-QR-fire/releases/tag/Ionic-QR
+Link descarga APK: https://github.com/Nikowoss/Ionic-QR-fire/releases/tag/Uni
 Código fuente: https://github.com/Nikowoss/Ionic-QR-fire
 
 
