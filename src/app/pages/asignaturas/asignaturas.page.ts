@@ -1,7 +1,9 @@
+import { AlertController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { DataService } from 'src/app/services/data.service';
 import { Asistencia } from 'src/app/interfaces/asistencia';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-asignaturas',
@@ -15,7 +17,7 @@ export class AsignaturasPage implements OnInit {
   private conditionValue = '';
   asistencias: { asignatura: string, detalles: Asistencia[] }[] = [];
 
-  constructor(private storage: Storage, private database: DataService) {
+  constructor(private storage: Storage, private database: DataService, private alertController:AlertController, private router: Router) {
     this.initStorage();
     this.obtenerValorDelStorage();
   }
@@ -75,5 +77,21 @@ export class AsignaturasPage implements OnInit {
       this.conditionValue = userEmail;
       this.getAsistencias();
     }
+    const navigation = this.router.getCurrentNavigation();
+    const showAlert = navigation?.extras?.state?.['showAlert'];
+    if (showAlert) {
+      this.alertadescan();
+    }
+  }
+
+  async alertadescan(){
+    const alert = await this.alertController.create({
+      header: "Asistencia Guardada",
+      message: "Tu asistencia a sido guardada exitosamente, ahora puedes verlo en Asistencia",
+      buttons: ["ok"]
+    });
+    await alert.present()
+    let result = await alert.onDidDismiss();
+    console.log(result);
   }
 }
