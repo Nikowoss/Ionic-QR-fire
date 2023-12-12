@@ -1,4 +1,4 @@
-﻿#**ScanClass**
+﻿##**ScanClass**
 
 ScanClass es una aplicación que simplifica el proceso de registro de asistencia en clases mediante códigos QR. A continuación se destacan las funcionalidades de la aplicación:
 
