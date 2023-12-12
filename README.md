@@ -5,7 +5,7 @@ ScanClass es una aplicación que simplifica el proceso de registro de asistencia
 ## Funcionalidades Principales:
 
 ### **1. Inicio de Sesión Seguro:** ScanClass cuenta con un sistema de inicio de sesión seguro que protege la información del usuario y garantiza la privacidad.
-![Inicio de sesión](https://drive.google.com/file/d/1ExmiH_xVW_TdOws3vu2p-ERTHh351evJ/view?usp=sharing)
+![Inicio de sesión]{[https://drive.google.com/file/d/1ExmiH_xVW_TdOws3vu2p-ERTHh351evJ/view]
 ### **2. Escaneo de Códigos QR:** Los usuarios pueden escanear códigos QR únicos proporcionados en cada clase por el profesor para registrar su asistencia de manera instantánea.
 ![Escaneo QR](https://drive.google.com/file/d/1D54qIC5YbN0ZXNen_itumnhjBbT6CYkT/view?usp=sharing)
 ### **3. Registro de asistencias:** La información de asistencia se almacena en Firebase, organizadas por asignatura. Esto facilita la gestión y consulta de las asistencias.
